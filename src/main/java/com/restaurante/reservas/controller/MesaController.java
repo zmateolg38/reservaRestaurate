@@ -71,7 +71,14 @@ public class MesaController {
     }
 
     @PostMapping
-    public ResponseEntity<MesaDTO> crearMesa(@RequestBody Mesa mesa) {
+    public ResponseEntity<MesaDTO> crearMesa(@RequestBody MesaDTO dto) {
+
+        Mesa mesa = new Mesa();
+        mesa.setNumero(dto.getNumero());
+        mesa.setCapacidad(dto.getCapacidad());
+        mesa.setEstado( dto.getEstado() );
+        mesa.setActiva( dto.isActiva() );
+
         Mesa mesaCreada = mesaService.crearMesa(mesa);
 
         MesaDTO mesaDTO = convertirAMesaDTO(mesaCreada);
@@ -110,7 +117,7 @@ public class MesaController {
         MesaDTO dto = new MesaDTO();
         dto.setNumero(mesa.getNumero());
         dto.setCapacidad(mesa.getCapacidad());
-        dto.setEstado(mesa.getEstado().name());
+        dto.setEstado( mesa.getEstado() );
         dto.setActiva(mesa.getActiva());
         return dto;
     }

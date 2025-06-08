@@ -49,16 +49,15 @@ public class ReservaController {
             Mesa mesa = mesaOpt.get();
             Usuario cliente = clienteOpt.get();
 
-            // Calcular fechaFin (media hora después del inicio)
-            LocalDateTime fechaInicio = dto.getFechaInicioReserva();
-            LocalDateTime fechaFin = fechaInicio.plusMinutes(30);
+            // LocalDateTime fechaInicio = dto.getFechaInicioReserva();
+            // LocalDateTime fechaFin = fechaInicio.plusMinutes(30);
 
             // Crear reserva
             Reserva reserva = new Reserva();
             reserva.setCliente(cliente);
             reserva.setMesa(mesa);
-            reserva.setFechaInicioReserva(fechaInicio);
-            reserva.setFechaFinReserva(fechaFin);
+            reserva.setFechaInicioReserva(dto.getFechaInicioReserva());
+            reserva.setFechaFinReserva(dto.getFechaFinReserva());
             reserva.setFechaCreacion(LocalDateTime.now());
             reserva.setNumeroPersonas(dto.getNumeroPersonas());
             reserva.setComentarios(dto.getComentarios());
