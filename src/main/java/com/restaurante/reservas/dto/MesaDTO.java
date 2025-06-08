@@ -1,6 +1,8 @@
 package com.restaurante.reservas.dto;
 
 
+import com.restaurante.reservas.entity.Mesa;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +16,7 @@ public class MesaDTO {
 
     private String numero;
     private int capacidad;
-    private String estado;
+    private Mesa.EstadoMesa estado;
     private boolean activa;
 
 }
