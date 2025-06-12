@@ -1,0 +1,32 @@
+# Nombre del workflow (aparecerá en GitHub Actions)
+name: Java CI
+
+# Cuándo se debe ejecutar este workflow
+on:
+  # Cuando alguien haga un push (subida de código) a la rama main
+  push:
+    branches: [ "main" ]
+  # O cuando se cree un pull request hacia la rama main
+  pull_request:
+    branches: [ "main" ]
+
+# Definición de los trabajos (jobs) que se ejecutarán
+jobs:
+  test:  # Nombre del job (puedes llamarlo como quieras)
+    runs-on: ubuntu-latest  # El sistema operativo donde correrá (Linux)
+
+    steps:
+      # Paso 1: Clonar el repositorio (descargar el código fuente)
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      # Paso 2: Configurar Java (versión 17, que usas en tu proyecto)
+      - name: Configurar Java 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'  # Versión de Java que necesitas
+          distribution: 'temurin'  # Distribución open source recomendada
+
+      # Paso 3: Ejecutar los tests con Maven
+      - name: Ejecutar tests con Maven
+        run: mvn clean test  # Comando que limpia y corre tus tests
